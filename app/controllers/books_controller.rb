@@ -25,7 +25,7 @@ class BooksController < ApplicationController
   end
 
   def update
-    if @book.update()
+    if @book.update(book_params)
       redirect_to book_path(@book), notice: "successfully updated book!"
     else
       render 'edit'
@@ -33,8 +33,8 @@ class BooksController < ApplicationController
   end
 
   def destroy
-  	@book.destroy
-  	redirect_to books_path, notice: "successfully delete book!"
+    @book.destroy
+    redirect_to books_path, notice: "successfully delete book!"
   end
 
   private
@@ -44,6 +44,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-  	params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body)
   end
 end
